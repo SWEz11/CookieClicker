@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = score.ToString(); 
     }
 
-    public void EndGame()
+    public void Clicker()
     {
         Debug.Log("Game Over");
     }
