@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
@@ -9,9 +11,12 @@ public class Shop : MonoBehaviour
 
     public Button firstthing;
     public GameManager gameManager;
+    public Image chef;
+    public TMP_Text x2;
     void Start()
     {
-        firstthing.enabled = false;
+        chef.color = Color.grey;
+        x2.enabled = false;
     }
 
     // Update is called once per frame
@@ -19,8 +24,33 @@ public class Shop : MonoBehaviour
     {
         if(gameManager.score == 10) 
         { 
-            firstthing.enabled = true;
+           chef.color = Color.white;
         }
+
+        if(gameManager.score >= 30)
+        {
+            x2.enabled = true;
+        }
+
+        if(gameManager.score >= 10)
+        {
+            InvokeRepeating("OnClick", 2f, 3f);
+        }
+
+        if(gameManager.score >= 30)
+        {
+
+        }
+
+    }
+
+    void OnClick()
+    {
+        gameManager.score++;
+    }
+
+    void OnClick2()
+    {
     }
 
 }

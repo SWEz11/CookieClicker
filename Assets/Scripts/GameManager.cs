@@ -8,19 +8,18 @@ public class GameManager : MonoBehaviour
 
     public int score;
     public TMP_Text scoreText;
-
     void Update()
     {
-        scoreText.text = score.ToString(); 
-    }
-
-    public void Clicker()
-    {
-        Debug.Log("Game Over");
+        scoreText.text = score.ToString();
+        if(transform.localScale.x > 1f)
+        {
+            transform.localScale -= Vector3.one * 0.01f;
+        }
     }
 
     void OnMouseDown()
     {
+        transform.localScale = Vector3.one * 1.5f;
         score++;
     }
 }
