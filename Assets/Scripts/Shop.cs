@@ -12,37 +12,41 @@ public class Shop : MonoBehaviour
     public Button firstthing;
     public GameManager gameManager;
     public Image chef;
-    public TMP_Text x2;
     public int chefcount;
-    public TMP_Text chefprice;
+    public TMP_Text chefcountText;
+    public TMP_Text chefpriceText;
+    public int chefprice;
     public float clickTimer;
     void Start()
     {
+        chefprice = 10;
         chef.color = Color.grey;
-        x2.enabled = false;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.score == 10) 
+        if(gameManager.score == chefprice) 
         { 
-           chef.color = Color.white;
+            BuyChef();
         }
-
-        clickTimer += Time.deltaTime;
-        if(clickTimer > 1f)
-        {
-            gameManager.score++;
-            clickTimer = 0;
-        }
+        chefcountText.text = chefcount.ToString();
+        chefpriceText.text = chefprice.ToString();
 
     }
 
     public void BuyChef()
     {
-        gameManager.score -= 10;
+        gameManager.score -= chefprice;
         chefcount++;
+        chefprice *= 2;
+        chefcount++;
+
+        clickTimer += Time.deltaTime;
+        if (clickTimer > 1f)
+        {
+            gameManager.score++;
+            clickTimer = 0;
+        }
     }
 }
