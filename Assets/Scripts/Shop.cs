@@ -13,10 +13,14 @@ public class Shop : MonoBehaviour
     public GameManager gameManager;
     public Image chef;
     public TMP_Text x2;
+    public int chefcount;
+    public TMP_Text chefprice;
+    public float clickTimer;
     void Start()
     {
         chef.color = Color.grey;
         x2.enabled = false;
+
     }
 
     // Update is called once per frame
@@ -27,30 +31,18 @@ public class Shop : MonoBehaviour
            chef.color = Color.white;
         }
 
-        if(gameManager.score >= 30)
+        clickTimer += Time.deltaTime;
+        if(clickTimer > 1f)
         {
-            x2.enabled = true;
-        }
-
-        if(gameManager.score >= 10)
-        {
-            InvokeRepeating("OnClick", 2f, 3f);
-        }
-
-        if(gameManager.score >= 30)
-        {
-
+            gameManager.score++;
+            clickTimer = 0;
         }
 
     }
 
-    void OnClick()
+    public void BuyChef()
     {
-        gameManager.score++;
+        gameManager.score -= 10;
+        chefcount++;
     }
-
-    void OnClick2()
-    {
-    }
-
 }
